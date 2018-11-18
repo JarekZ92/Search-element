@@ -1,4 +1,4 @@
-const container = document.querySelector('.main_container'),
+var container = document.querySelector('.main_container'),
 input = container.querySelector('input'),
 list,
 valuesContainer
@@ -12,27 +12,33 @@ valuesContainer =[
     'Niemcy'
 ]
 
-const makeList = function(values){
-    let ul = document.createElement('ul')
+var makeList = function(values){
+    if (list){
+        container.removeChild(list)
+    }
+    var ul = document.createElement('ul')
     values.forEach(function(value){
-        let li = document.createElement('li')
+        var li = document.createElement('li')
         li.textContent = value
-        .list.appendChild(li)
+        ul.appendChild(li)
     })
     return ul
 }
 
-const listManagement = function(string) {
-    let showedValues = valuesContainer.filter(function(value){
+var listManagement = function(string) {
+    var showedValues = valuesContainer.filter(function(value){
         return value.indexOf(string) == 0
     })
     if (showedValues.length) {
-        list = createList(showedValues)
+        list = makeList(showedValues)
         container.appendChild(list)
+    } else if (list !== null) {
+        container.removeChild(list)
+        list = null
     }
 }
 
-const onType = function() {
+var onType = function() {
     listManagement(this.value)
 }
 
