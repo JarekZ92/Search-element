@@ -11,3 +11,13 @@ valuesContainer =[
     'Rosja',
     'Niemcy'
 ]
+
+const makeList = function(values){
+    let ul = document.createElement('.list')
+    values.forEach(function(value){
+        let li = document.createElement('li')
+        li.textContent = value
+        .list.appendChild(li)
+    })
+    return ul
+}
